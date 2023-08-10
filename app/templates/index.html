@@ -1,5 +1,21 @@
+<!-- templates/index.html -->
 {% extends "layout.html" %}
-
+{% block title %}Home{% endblock %}
 {% block content %}
-  <!-- Your Main Content Here -->
+    <h2>Hey Hey Hey, it's GovA11y!</h2>
+    <p>Click a domain from the sidebar to view its details.</p>
+    <div id="domain-info">
+      <h2 id="domain-name"></h2>
+      <p>Active URLs: <span id="active-urls"></span></p>
+      <p>Total URLs: <span id="url-count"></span></p>
+      <!-- Add more fields as required -->
+    </div>
+
+{% endblock %}
+{% block sidebar %}
+    <ul class="domain-list">
+        {% for item in domains %}
+            <li><a href="#">{{ item.domain }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

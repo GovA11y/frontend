@@ -10,7 +10,7 @@ def traces_sampler(sampling_context):
     return 1.0
 
 
-def initialize_sentry():
+def configure_sentry():
     sentry_sdk.init(
         dsn=os.getenv("SENTRY_DSN"),
         integrations=[FlaskIntegration()],

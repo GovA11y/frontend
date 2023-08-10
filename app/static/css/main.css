@@ -1,0 +1,121 @@
+/* static/css/main.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Telegraf&display=swap'); /* Importing the Telegraf font */
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif; /* General body font */
+    background-color: #FFFFFF; /* Brand color for background */
+    color: #293041; /* Brand color for general text */
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #293041; /* Brand color for header */
+    color: #FFFFFF; /* Brand color for header text */
+    padding: 5px 15px;
+    z-index: 1;
+    display: flex;
+}
+
+header h1 {
+    margin: 0;
+    flex: 1;
+    font-family: 'Telegraf', sans-serif; /* Logo font */
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex: 2;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #205EFF; /* Brand color for links */
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.sidebar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: auto;
+    height: calc(100% - 30px);
+    background-color: #D1D1D1; /* Brand color for sidebar */
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.main-content {
+    margin-left: 220px;
+    margin-top: 30px;
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: #293041; /* Brand color for footer */
+    color: #FFFFFF; /* Brand color for footer text */
+    padding: 15px;
+    text-align: center;
+}
+
+.domain-list {
+    list-style-type: none;
+    padding: 5px 0 0;
+}
+
+.domain-list li {
+    display: block;
+    margin: 5px;
+    background-color: #205EFF; /* Brand color for domain background */
+    color: #FFFFFF; /* Brand color for domain text */
+    padding: 5px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.domain-list li a {
+    text-decoration: none;
+    color: #FFFFFF; /* Same as domain text color for consistency */
+}
+
+#domain-info {
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+#domain-info h2 {
+  color: #293041;
+  font-family: 'Telegraf', sans-serif; /* Using the imported Telegraf font */
+  font-weight: bold; /* Making the text bold */
+}
+
+#domain-info p {
+  color: #205EFF;
+  font-family: Arial, sans-serif; /* Example of body font, adjust as needed */
+}
