@@ -12,6 +12,10 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          config_timezone: America/New_York
 
 # Repo Summary
 # https://github.com/TheBoatyMcBoatFace/metrics/blob/main/source/plugins/repositories/README.md
