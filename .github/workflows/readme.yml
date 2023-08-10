@@ -15,6 +15,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.BOT_TOKEN }}
+          user: GovA11y
           config_timezone: America/New_York
 
 # Repo Summary
@@ -25,7 +26,6 @@ jobs:
           template: repository
           filename: assets/metrics.repository.svg
           token: ${{ secrets.BOT_TOKEN }}
-          # user: GovA11y
           repo: ${{ github.repository }}
           plugin_lines: yes
           plugin_followup: yes
