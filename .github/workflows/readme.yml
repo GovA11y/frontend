@@ -13,18 +13,19 @@ jobs:
     steps:
 
 # Repo Summary
+# https://github.com/TheBoatyMcBoatFace/metrics/blob/main/source/plugins/repositories/README.md
       - name: Repo Overview
         uses: lowlighter/metrics@latest
         with:
           template: repository
           filename: assets/metrics.repository.svg
           token: ${{ secrets.BOT_TOKEN }}
-          user: ${{ github.repository_owner }}
+          user: gova11y
           repo: ${{ github.repository }}
           plugin_lines: yes
           plugin_followup: yes
           plugin_projects: yes
-          plugin_projects_repositories: lowlighter/metrics/project
+          # plugin_projects_repositories: lowlighter/metrics/project
 
       # Repo People
       # https://github.com/TheBoatyMcBoatFace/metrics/blob/main/source/plugins/people/README.md
