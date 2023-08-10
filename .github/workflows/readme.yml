@@ -28,7 +28,7 @@ jobs:
           filename: assets/metrics.repository.svg
           token: ${{ secrets.BOT_TOKEN }}
           user: GovA11y
-          repo: ${{ github.repository }}
+          # repo: ${{ github.repository }}
           plugin_lines: yes
           plugin_followup: yes
           plugin_projects: yes
@@ -44,7 +44,7 @@ jobs:
           base: ""
           template: repository
           user: GovA11y
-          repo: ${{ github.repository }}
+          # repo: ${{ github.repository }}
           plugin_people: yes
           plugin_people_types: contributors, stargazers, watchers, sponsors
 
