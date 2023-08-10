@@ -1,33 +1,37 @@
 # .github/workflows/release.yml
 # Creates new release and updates sentry
 # https://github.com/marketplace/actions/sentry-release
+# https://github.com/marketplace/actions/create-release
+# .github/workflows/release.yml
+# Creates new release and updates sentry
 name: Create Release
 
 on:
-  create:
+  push:
     tags:
-      - 'v*'
+    - '*'
+
+
 
 jobs:
   create-release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release
+        uses: ncipollo/release-action@v1.12.0
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: Auto-generated release from ${{ github.ref }}
-          draft: false
-          prerelease: false
+          artifacts: ""
+          body: "Auto-generated release from ${{ github.ref }}"
+          name: "Release ${{ github.ref }}"
+          tag: "${{ github.ref }}"
+          token: ${{ secrets.BOT_TOKEN }}
 
   configure-sentry:
     name: Configure Sentry

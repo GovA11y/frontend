@@ -31,7 +31,14 @@ jobs:
       - name: Print new version
         run: echo "New version is ${{ steps.version.outputs.version }}"
 
-      - name: Tag commit with new version
+      - name: Configure Git user
         run: |
-          git tag ${{ steps.version.outputs.version_tag }}
-          git push origin --tags
+          git config user.name "${{ secrets.BOT_NAME }}"
+          git config user.email "${{ secrets.BOT_EMAIL }}"
+
+      - name: Tag the new version
+        run: |
+          git tag v${{ steps.version.outputs.version }}
+          git push origin v${{ steps.version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
