@@ -2,7 +2,9 @@ name: 🏗️📤 Build and publish 🐳 images
 
 on:
   push:
-
+    paths-ignore:
+      - 'assets/**'
+      - '.github/**'
 
   workflow_dispatch:
 
