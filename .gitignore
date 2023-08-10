@@ -1,3 +1,9 @@
 .DS_Store
 .nova
 notes.txt
+__pycache__
+.pytest_cache
+notes.txt
+__pycache__
+logs*
+venv

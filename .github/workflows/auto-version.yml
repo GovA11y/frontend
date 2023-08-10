@@ -1,0 +1,37 @@
+# .github/workflows/auto-version.yml
+# Resources: https://github.com/marketplace/actions/git-semantic-version#git-based-semantic-versioning
+# Auto-generates version for commits
+
+name: Auto Versioning
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history and tags
+
+      - name: Generate Semantic Version
+        id: version
+        uses: paulhatch/semantic-version@v5
+        with:
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          # Add any other needed parameters here
+
+      - name: Print new version
+        run: echo "New version is ${{ steps.version.outputs.version }}"
+
+      - name: Tag commit with new version
+        run: |
+          git tag ${{ steps.version.outputs.version_tag }}
+          git push origin --tags
