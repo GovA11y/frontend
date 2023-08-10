@@ -1,0 +1,56 @@
+# Generate content for README
+name: Generate README Images
+on:
+  schedule: [{cron: "0 0 * * *"}]
+  workflow_dispatch:
+
+
+jobs:
+  readme-images:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+
+# Repo Summary
+      - name: Repo Overview
+        uses: lowlighter/metrics@latest
+        with:
+          template: repository
+          filename: assets/metrics.repository.svg
+          token: ${{ secrets.BOT_TOKEN }}
+          user: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          plugin_lines: yes
+          plugin_followup: yes
+          plugin_projects: yes
+          plugin_projects_repositories: lowlighter/metrics/project
+
+      # Repo People
+      # https://github.com/TheBoatyMcBoatFace/metrics/blob/main/source/plugins/people/README.md
+      - name: Contributors and sponsors
+        uses: lowlighter/metrics@latest
+        with:
+          filename: assets/metrics.plugin.people.repository.svg
+          token: ${{ secrets.BOT_TOKEN }}
+          base: ""
+          template: repository
+          repo: ${{ github.repository }}
+          plugin_people: yes
+          plugin_people_types: contributors, stargazers, watchers, sponsors
+
+      # Licenses for Repo
+      # https://github.com/TheBoatyMcBoatFace/metrics/blob/main/source/plugins/licenses/README.md
+      - name: Licenses and permissions
+        uses: lowlighter/metrics@latest
+        with:
+          filename: assets/metrics.plugin.licenses.svg
+          token: ${{ secrets.BOT_TOKEN }}
+          base: ""
+          template: repository
+          repo: ${{ github.repository }}
+          plugin_licenses: yes
+          plugin_licenses_setup: bash -c '[[ -f package.json ]] && npm ci || true'
+          plugin_licenses_legal: yes
+          plugin_licenses_ratio: yes
+
