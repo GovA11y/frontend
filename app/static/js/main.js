@@ -38,3 +38,48 @@ $(document).ready(function() {
 });
 
 
+// Edit Page
+document.getElementById('search-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const domain = document.getElementById('search-bar').value;
+  const url = `https://reports.openato.com/domain/list-update?format=json&domain=${domain}`;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => renderDomainsTable(data))
+    .catch(error => console.error("Error fetching domain list:", error));
+});
+
+function renderDomainsTable(domains) {
+  const tableBody = document.getElementById('domains-table');
+  tableBody.innerHTML = ""; // Clear previous results
+
+  domains.forEach(domain => {
+    const row = `<tr>
+        <td>${domain.domain_id}</td>
+        <td>${domain.domain}</td>
+        <td><input type="checkbox" data-id="${domain.domain_id}" class="is-active" ${domain.is_domain_active ? 'checked' : ''}></td>
+        <td><input type="checkbox" data-id="${domain.domain_id}" class="is-objective" ${domain.is_domain_objective ? 'checked' : ''}></td>
+    </tr>`;
+    tableBody.innerHTML += row;
+  });
+}
+
+document.getElementById('edit-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const updateData = Array.from(document.querySelectorAll('.is-active, .is-objective'))
+    .map(input => ({
+      domain_id: input.dataset.id,
+      is_active: document.querySelector(`.is-active[data-id="${input.dataset.id}"]`).checked,
+      is_objective: document.querySelector(`.is-objective[data-id="${input.dataset.id}"]`).checked
+    }));
+
+  // Now you can send updateData to the server as JSON
+  fetch('https://reports.openato.com/domain/update', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updateData)
+  })
+  .then(response => response.json())
+  .then(data => alert('Update successful!'))
+  .catch(error => alert('An error occurred while updating the domains.'));
+});

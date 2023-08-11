@@ -1,5 +1,6 @@
 # app/routes.py
 from app import app
+from .utils.monitoring.logger import logger
 import os
 from app.views import index, metrics, trigger_error
 import requests
@@ -32,3 +33,10 @@ def get_domain_summary():
     }
     response = requests.get(url, headers=headers)
     return jsonify(response.json())
+
+
+@app.route('/edit', methods=['GET', 'POST'])
+def edit_domains():
+    if request.method == 'POST':
+        logger.info('event happened')
+    return render_template('edit.html')

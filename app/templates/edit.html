@@ -1,0 +1,26 @@
+<!-- templates/edit.html -->
+{% extends "layout.html" %}
+{% block title %}Edit Domains{% endblock %}
+{% block content %}
+    <h2>Edit Domains</h2>
+    <form id="search-form">
+        <input type="text" id="search-bar" placeholder="Enter the domain name">
+        <button type="submit">Search</button>
+    </form>
+    <form id="edit-form">
+        <table>
+            <thead>
+                <tr>
+                    <th>Domain ID</th>
+                    <th>Domain</th>
+                    <th>Is Active</th>
+                    <th>Is Objective</th>
+                </tr>
+            </thead>
+            <tbody id="domains-table">
+                <!-- The results will be inserted here -->
+            </tbody>
+        </table>
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}
