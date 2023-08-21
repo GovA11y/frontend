@@ -1,4 +1,6 @@
 // app/static/js/main.js
+let API_URL;
+
 function handleDomainClick(domain) {
   const url = `/domain/summary?domain=${domain}`;
 

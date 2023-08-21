@@ -6,12 +6,18 @@ from app.views import index, metrics, trigger_error
 import requests
 from flask import render_template, jsonify, request
 
+API_URL=os.environ.get('API_URL')
 
 @app.route('/')
 def home():
-    response = requests.get('https://reports.openato.com/domain/list?format=json')
+    response = requests.get(f'{API_URL}/domain/list?format=json')
     domains = response.json()
     return render_template('index.html', domains=domains)
+
+
+@app.route('/api/config')
+def get_config():
+    return jsonify({'api_url': os.getenv('API_URL')})
 
 
 @app.route('/metrics')
@@ -23,10 +29,11 @@ def get_metrics():
 def debug_sentry():
     return trigger_error()
 
+
 @app.route('/domain/summary')
 def get_domain_summary():
     domain = request.args.get('domain')
-    url = f"https://reports.openato.com/domain/summary?domain={domain}&format=json"
+    url = f"{API_URL}/domain/summary?domain={domain}&format=json"
     headers = {
         "CF-Access-Client-Id": os.environ.get('CF_ACCESS_CLIENT_ID'),
         "CF-Access-Client-Secret": os.environ.get('CF_ACCESS_CLIENT_SECRET'),
