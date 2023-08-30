@@ -8,6 +8,8 @@ from flask import render_template, jsonify, request
 
 API_URL=os.environ.get('API_URL')
 
+# NEW: We want to use app/api/app/api/__init__.py as the base. We want all api requests to use repo root, then /api/ then route
+
 @app.route('/')
 def home():
     response = requests.get(f'{API_URL}/domain/list?format=json')

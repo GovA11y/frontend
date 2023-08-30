@@ -22,13 +22,14 @@
 
 # PLACEHOLDER BELOW
 
+THIS IS A SUBMODULE
+
 ## Features
 
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
-
+-   Light/dark mode toggle
+-   Live previews
+-   Fullscreen mode
+-   Cross platform
 
 ## Deployment
 
@@ -38,7 +39,6 @@ To deploy this project run
   npm run deploy
 ```
 
-
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
@@ -47,16 +47,13 @@ To run this project, you will need to add the following environment variables to
 
 `ANOTHER_API_KEY`
 
-
 ## Optimizations
 
 What optimizations did you make in your code? E.g. refactors, performance improvements, accessibility
 
-
 ## Support
 
 For support, email fake@fake.com or join our Slack channel.
-
 
 ## Contributing
 
@@ -66,20 +63,16 @@ See `contributing.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`.
 
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-
 ## Documentation
 
 [Documentation](https://linktodocumentation)
-
 
 ## Related
 
 Here are some related projects
 
 [Awesome README](https://github.com/matiassingers/awesome-readme)
-
